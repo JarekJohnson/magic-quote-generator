@@ -1,0 +1,87 @@
+.sparkle {
+  position: absolute;
+  font-size: 1.1rem;
+  opacity: 0;
+  pointer-events: none;
+  animation: none;
+}
+
+.sparkle-group:hover .sparkle-1 {
+  animation: sparkleTrail1 1s ease-out forwards;
+}
+
+.sparkle-group:hover .sparkle-2 {
+  animation: sparkleTrail2 1.2s ease-out forwards;
+}
+
+.sparkle-group:hover .sparkle-3 {
+  animation: sparkleTrail3 1.4s ease-out forwards;
+}
+
+.sparkle-group:hover .sparkle-4 {
+  animation: sparkleTrail4 1.6s ease-out forwards;
+}
+
+@keyframes sparkleTrail1 {
+  0% {
+    top: 100%;
+    left: 0%;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    top: -20%;
+    left: 80%;
+    opacity: 0;
+  }
+}
+
+@keyframes sparkleTrail2 {
+  0% {
+    top: 100%;
+    left: 20%;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    top: -20%;
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes sparkleTrail3 {
+  0% {
+    top: 100%;
+    left: 50%;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    top: -20%;
+    left: 60%;
+    opacity: 0;
+  }
+}
+
+@keyframes sparkleTrail4 {
+  0% {
+    top: 100%;
+    left: 80%;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    top: -20%;
+    left: 40%;
+    opacity: 0;
+  }
+}
