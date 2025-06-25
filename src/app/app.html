@@ -1,12 +1,13 @@
-<div
-  class="min-h-screen bg-gradient-to-br from-indigo-600 animate-gradient-x via-purple-600 to-pink-500 px-4 py-10"
+<main
+  class="min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 px-4 py-10"
 >
   <div class="flex flex-col items-center justify-center">
     <div
       class="absolute w-96 h-96 bg-purple-500 rounded-full blur-3xl opacity-30 -z-10 animate-pulse"
     ></div>
+
     <div
-      class="bg-white/10 backdrop-blur-lg shadow-2xl rounded-2xl p-8 max-w-xl text-center border border-white/20"
+      class="bg-white/10 backdrop-blur-lg shadow-2xl rounded-2xl p-8 max-w-xl text-center border border-white/20 ring-1 ring-white/30 hover:ring-2 hover:ring-amber-300 transition-all duration-300"
       [class.opacity-0]="isFading()"
       [class.opacity-100]="!isFading()"
     >
@@ -14,7 +15,7 @@
         🔮 Magic Quote Generator
       </h1>
 
-      <ng-container *ngIf="quote() as currentQuote">
+      <ng-container *ngIf="quote() as currentQuote; else loading">
         <p
           class="text-2xl text-white/90 font-medium italic mb-4 leading-relaxed"
         >
@@ -27,21 +28,28 @@
         </p>
       </ng-container>
 
-      <div class="flex flex-col items-center space-y-2 mt-6">
+      <ng-template #loading>
+        <p class="text-white/80 italic">🔄 Summoning magic...</p>
+      </ng-template>
+
+      <div
+        class="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0 items-center justify-center mt-6"
+      >
         <button
+          aria-label="Summon a new magical quote"
           (click)="loadQuote()"
-          class="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-xl shadow-md transition"
+          class="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-xl shadow-md transition active:scale-95 hover:shadow-lg"
         >
           🪄 Summon a New Quote
         </button>
 
         <button
+          aria-label="Toggle auto-quote mode"
           (click)="toggleAuto()"
-          class="relative sparkle-group overflow-hidden text-sm px-3 py-1 rounded-full transition
-         font-medium focus:outline-none border
-         {{ autoActive 
-             ? 'bg-yellow-400 text-yellow-900 animate-pulse border-yellow-300' 
-             : 'bg-white/10 text-white border-white/20 hover:bg-white/20' }}"
+          class="relative sparkle-group overflow-hidden text-sm px-3 py-1 rounded-full font-medium focus:outline-none border transition active:scale-95
+          {{ autoActive 
+              ? 'bg-yellow-400 text-yellow-900 animate-pulse border-yellow-300' 
+              : 'bg-white/10 text-white border-white/20 hover:bg-white/20' }}"
         >
           {{ autoActive ? '✨ Pause Magic Flow ✨' : '▶️ Let the Magic Flow' }}
           <span class="sparkle sparkle-1">✨</span>
@@ -49,16 +57,19 @@
           <span class="sparkle sparkle-3">✨</span>
           <span class="sparkle sparkle-4">✨</span>
         </button>
+
         <button
+          aria-label="Save quote to favorites"
           (click)="saveFavorite()"
-          class="mb-4 px-3 py-1 bg-purple-600 text-white rounded shadow hover:bg-purple-700 transition"
+          class="px-3 py-1 bg-purple-700 text-white rounded shadow hover:bg-purple-800 transition active:scale-95"
         >
           ✨ Save to Favorites
         </button>
       </div>
     </div>
   </div>
-  <div *ngIf="favorites().length" class="mt-12 w-full max-w-4xl mx-auto">
+
+  <section *ngIf="favorites().length" class="mt-12 w-full max-w-4xl mx-auto">
     <h2 class="text-2xl font-bold text-white text-center mb-6">
       📚 Favorite Quotes
     </h2>
@@ -73,6 +84,8 @@
           — {{ fav.author }}
         </p>
         <button
+          role="button"
+          aria-label="Remove favorite quote"
           (click)="removeFavorite(i)"
           class="absolute top-1 right-2 text-white text-lg hover:text-rose-300 hover:scale-125 transition-all duration-200"
           title="Remove from favorites"
@@ -81,5 +94,5 @@
         </button>
       </div>
     </div>
-  </div>
-</div>
+  </section>
+</main>

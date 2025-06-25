@@ -1,22 +1,21 @@
-import { QuoteService } from './quote';
+import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { inject } from '@angular/core/testing';
-import { TestBed } from '@angular/core/testing';
+import { QuoteService } from './quote';
 
 describe('QuoteService', () => {
-  beforeEach(() => inject([], () => {}));
-
-  it('should be created', () => {
-    const injector = TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       providers: [
         QuoteService,
         provideHttpClient(),
         provideHttpClientTesting(),
       ],
     });
+  });
 
-    const service = injector.inject(QuoteService);
+  it('should be created', () => {
+    const service = TestBed.inject(QuoteService);
     expect(service).toBeTruthy();
   });
 });
