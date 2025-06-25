@@ -28,7 +28,7 @@ A visually stunning Angular 18+ app that fetches and displays inspirational quot
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/YOUR-USERNAME/magic-quote-portal.git
+   git clone https://github.com/JarekJohnson/magic-quote-portal.git
    cd magic-quote-portal
    ```
 2. Install Dependencies:
